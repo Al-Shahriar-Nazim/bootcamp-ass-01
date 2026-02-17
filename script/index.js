@@ -20,10 +20,19 @@ const displayProductCatagories = (catagories) => {
   for (let catagorie of catagories) {
     const button = document.createElement("button");
     button.innerHTML = `
-        <p class="btn rounded-full hover:bg-indigo-600 hover:text-white">${catagorie}</p>
+        <p class="bg-gray-100 p-2 shadow-lg rounded-full hover:bg-indigo-600 hover:text-white">${catagorie}</p>
         `;
     // button.innerText = catagorie;
-    button.onclick = () => loadCatagoryProduct(catagorie);
+    button.onclick = () => {
+      // 1. Remove 'btn-active' from all buttons
+      document.querySelectorAll("#product-container button").forEach((btn) => {
+        btn.classList.remove("btn-active");
+      });
+
+      // 2. Add 'btn-active' to clicked button
+      button.classList.add("btn-active");
+      loadCatagoryProduct(catagorie);
+    };
     //step:4 append the container
     productCatagories.append(button);
   }
@@ -96,7 +105,7 @@ const displaydata = (products) => {
 // load single catagory
 const loadCatagoryProduct = (category) => {
   document.getElementById("all-products").classList.add("hidden");
-  document.getElementById("singleContainer").classList.remove("hidden")
+  document.getElementById("singleContainer").classList.remove("hidden");
   fetch(`https://fakestoreapi.com/products/category/${category}`)
     .then((res) => res.json())
     .then((data) => showProducts(data));
@@ -155,8 +164,15 @@ const showProducts = (products) => {
   }
 };
 
-const showAll = ()=>{
-  document.getElementById("singleContainer").classList.add('hidden');
-  document.getElementById("all-products").classList.remove("hidden")
- products();
-}
+const showAll = () => {
+  document.getElementById("singleContainer").classList.add("hidden");
+  document.getElementById("all-products").classList.remove("hidden");
+  products();
+  // Remove active from all category buttons
+  document.querySelectorAll("#product-container button").forEach((btn) => {
+    btn.classList.remove("btn-active");
+  });
+
+  // Add active to All button
+  // document.querySelector("#proudcts .btn").classList.add("btn-active");
+};

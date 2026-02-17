@@ -1,3 +1,4 @@
-.active{
-    color: indigo;
+.btn-active {
+  background-color: #4f46e5;
+  color: rgb(57, 0, 150);
 }
