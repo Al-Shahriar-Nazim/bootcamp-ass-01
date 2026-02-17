@@ -84,7 +84,7 @@ const displaydata = (products) => {
             <h3 class="text-xl font-bold">$ ${product.price}</h3>
 
             <div class="mt-auto card-actions flex justify-end">
-              <button class="btn shadow-lg">
+              <button onclick="loadCartDetails(${product.id})" class="btn shadow-lg">
                 <i class="fa-solid fa-eye"></i>
                 Details
               </button>
@@ -156,6 +156,7 @@ const showProducts = (products) => {
                 <i class="fa-solid fa-cart-arrow-down"></i>
                 Add
               </button>
+  
             </div>
           </div>
         </div>
@@ -175,4 +176,60 @@ const showAll = () => {
 
   // Add active to All button
   // document.querySelector("#proudcts .btn").classList.add("btn-active");
+};
+
+const loadCartDetails = async (id) => {
+  const url = `https://fakestoreapi.com/products/${id}`;
+  const res = await fetch(url);
+  const details = await res.json();
+  displayCardDetails(details);
+};
+
+const displayCardDetails = (word) => {
+  // console.log(word)
+  const detailsBox = document.getElementById("details-container");
+  detailsBox.innerHTML = `
+   <div class="card bg-base-100 w-full md:w-96 shadow-sm">
+              <figure class="bg-gray-200 pb-5">
+                <img
+                  class="w-[150px]"
+                  src=${word.image}
+                  alt="Shoes"
+                />
+              </figure>
+              <div class="card-body">
+                <div class="flex items-center justify-between">
+                  <div class="w-30">
+                    <p
+                      class="text-center text-blue-700 bg-indigo-200 p-2 rounded-3xl font-medium"
+                    >
+                      ${word.category}
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-xl font-medium text-gray-600">
+                      <span
+                        ><i class="fa-solid fa-star text-yellow-500"></i
+                      ></span>
+                      ${word.rating.rate}(${word.rating.count})
+                    </p>
+                  </div>
+                </div>
+                <h2 class="card-title">
+              ${word.title}
+                </h2>
+                <p class="text-xs font-medium text-gray-400">${word.description}</p>
+                <h3 class="text-xl font-bold">$ ${word.price}</h3>
+
+                <div class="card-actions flex justify-end">
+                  <button class="btn btn-primary">
+                    <i class="fa-solid fa-cart-arrow-down"></i>
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+  `;
+
+  document.getElementById("card_model").showModal();
 };
