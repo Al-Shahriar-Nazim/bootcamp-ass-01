@@ -32,7 +32,7 @@
   </head>
   <body class="">
     <!-- header -->
-    <header>
+    <header class="">
       <!-- navbar -->
       <div class="navbar bg-base-100 container md:w-[75%] mx-auto">
         <div class="navbar-start">
@@ -57,8 +57,8 @@
               tabindex="-1"
               class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li><a>Home</a></li>
-              <li><a>Products</a></li>
+              <li onclick="show('home')"><a>Home</a></li>
+            <li onclick="show('proudcts')"><a>Products</a></li>
               <li><a>About</a></li>
               <li><a>Contacts</a></li>
             </ul>
@@ -67,8 +67,8 @@
         </div>
         <div class="navbar-center hidden lg:flex">
           <ul class="menu menu-horizontal px-1">
-            <li><a>Home</a></li>
-            <li><a>Products</a></li>
+            <li onclick="show('home')"><a>Home</a></li>
+            <li onclick="show('proudcts')"><a>Products</a></li>
             <li><a>About</a></li>
             <li><a>Contacts</a></li>
           </ul>
@@ -81,7 +81,7 @@
       </div>
     </header>
     <!-- banner section -->
-    <section class="">
+    <section class="page" id="home">
       <div
         class="hero h-[400px] bg-black divide-opacity-60"
         style="background-image: url(./assets/banner-image.png)"
@@ -102,7 +102,7 @@
       </div>
     </section>
     <!-- chose section -->
-    <section class="my-10">
+    <section class="my-10 page" id="home">
       <div class="text-center">
         <h3 class="text-3xl font-bold py-3">Why choose us</h3>
         <p class="text-xl text-gray-400">
@@ -183,7 +183,7 @@
     </section>
 
     <!-- Tranding section -->
-    <section class="w-full md:w-[75%] mx-auto my-10 mt-5">
+    <section class="w-full md:w-[75%] mx-auto my-10 mt-5 page">
       <h3 class="text-3xl font-bold my-5">Tranding Now</h3>
       <div class="flex flex-col md:flex-row gap-6">
         <!-- 1st card -->
@@ -312,6 +312,28 @@
         </div>
       </div>
     </section>
+
+    <!-- proudct section -->
+    <section
+      id="proudcts"
+      class="w-full md:w-[75%] mx-auto hidden page min-h-screen"
+    >
+      <h1 class="text-2xl font-bold text-center">Our Product</h1>
+
+      <!-- product container -->
+      <div class="flex flex-col  md:flex-row gap-4 justify-center my-10">
+        <div class="flex justify-center"><button class="btn rounded-full">All</button></div>
+        <div id="product-container" class="flex gap-4 flex-col md:flex-row">
+
+        </div>
+      </div>
+      <div id="all-products" class="flex flex-wrap gap-8 my-10">
+
+      </div>
+
+      <!--  -->
+    </section>
+
     <!-- footer section -->
     <footer class="bg-[#1e1e27] text-gray-400 font-medium text-base-content">
       <div class="w-full md:w-[75%] mx-auto footer sm:footer-horizontal p-10">
