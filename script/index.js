@@ -154,3 +154,9 @@ const showProducts = (products) => {
     singleContainer.append(cardDiv);
   }
 };
+
+const showAll = ()=>{
+  document.getElementById("singleContainer").classList.add('hidden');
+  document.getElementById("all-products").classList.remove("hidden")
+ products();
+}
